@@ -20,10 +20,11 @@ namespace Order.Management
         }
         
         // Order Circle Input
+        // private
         public static Circle OrderCirclesInput()
         {
             Console.Write("\nPlease input the number of Red Circle: ");
-            int redCircle = Convert.ToInt32(userInput());
+            int redCircle = Convert.ToInt32(userInput()); // unsafe casting, same for below
             Console.Write("Please input the number of Blue Circle: ");
             int blueCircle = Convert.ToInt32(userInput());
             Console.Write("Please input the number of Yellow Circle: ");
@@ -32,8 +33,9 @@ namespace Order.Management
             Circle circle = new Circle(redCircle, blueCircle, yellowCircle);
             return circle;
         }
-        
+
         // Order Squares Input
+        // private
         public static Square OrderSquaresInput()
         {
             Console.Write("\nPlease input the number of Red Squares: ");
@@ -48,6 +50,7 @@ namespace Order.Management
         }
 
         // Order Triangles Input
+        // private
         public static Triangle OrderTrianglesInput()
         {
             Console.Write("\nPlease input the number of Red Triangles: ");
@@ -62,6 +65,7 @@ namespace Order.Management
         }
 
         // User Console Input
+        // private
         public static string userInput()
         {
             string input = Console.ReadLine();
@@ -74,6 +78,8 @@ namespace Order.Management
             return input;
         }
 
+
+        // Extract these to IReportGenerator, all having bad naimings
         // Generate Painting Report 
         private static void PaintingReport(string customerName, string address, string dueDate, List<Shape> orderedShapes)
         {
@@ -96,7 +102,7 @@ namespace Order.Management
         }
 
         // Get customer Info
-        private static (string customerName, string address, string dueDate) CustomerInfoInput()
+        private static (string customerName, string address, string dueDate) CustomerInfoInput() // Bad naming, also can be extracted to IStringPrinter
         {
             Console.Write("Please input your Name: ");
             string customerName = userInput();
@@ -108,7 +114,7 @@ namespace Order.Management
         }
 
         // Get order input
-        private static List<Shape> CustomerOrderInput()
+        private static List<Shape> CustomerOrderInput() // Bad naming, e.g. GetOrderedShapes
         {
             Square square = OrderSquaresInput();
             Triangle triangle = OrderTrianglesInput();
